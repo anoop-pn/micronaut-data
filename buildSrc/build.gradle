@@ -1,10 +1,24 @@
 plugins {
     id 'groovy-gradle-plugin'
+    id 'org.checkerframework' version '0.6.17'
+}
+
+apply plugin: 'org.checkerframework'
+
+checkerFramework {
+    checkers = [
+            'edu.ucr.cs.riple.taint.ucrtainting.UCRTaintingChecker',
+    ]
+    extraJavacArgs = [
+            '-Awarns',
+            '-AstubDebug'
+    ]
 }
 
 repositories {
     gradlePluginPortal()
     mavenCentral()
+    mavenLocal()
 }
 
 dependencies {
@@ -16,4 +30,7 @@ dependencies {
     implementation libs.gradle.spring.boot
     implementation libs.gradle.spring.dependencies
     implementation libs.gradle.shadow
+
+    checkerFramework 'edu.ucr.cs.riple.taint:ucrtainting-checker:0.1'
+    implementation 'edu.ucr.cs.riple.taint:ucrtainting-checker:0.1'
 }

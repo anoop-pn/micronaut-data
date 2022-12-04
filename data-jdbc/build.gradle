@@ -1,6 +1,6 @@
 plugins {
     id "io.micronaut.build.internal.data-module"
-    id 'org.checkerframework' version '0.6.16'
+    id 'org.checkerframework' version '0.6.17'
 }
 
 apply plugin: 'org.checkerframework'
@@ -65,7 +65,7 @@ dependencies {
     testRuntimeOnly libs.drivers.jdbc.postgresql
     testRuntimeOnly libs.drivers.jdbc.mssql
 
-    annotationProcessor 'edu.ucr.cs.riple.taint:ucrtainting-checker:0.1'
+    checkerFramework 'edu.ucr.cs.riple.taint:ucrtainting-checker:0.1'
     implementation 'edu.ucr.cs.riple.taint:ucrtainting-checker:0.1'
 }
 
