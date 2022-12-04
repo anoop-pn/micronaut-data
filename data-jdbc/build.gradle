@@ -17,7 +17,7 @@ checkerFramework {
     ]
     extraJavacArgs = [
             '-Awarns',
-            '-AstubDebug'
+//            '-AstubDebug'
     ]
 }
 
@@ -65,7 +65,7 @@ dependencies {
     testRuntimeOnly libs.drivers.jdbc.postgresql
     testRuntimeOnly libs.drivers.jdbc.mssql
 
-    annotationProcessor 'edu.ucr.cs.riple.taint:ucrtainting-checker:0.1'
+    checkerFramework 'edu.ucr.cs.riple.taint:ucrtainting-checker:0.1'
     implementation 'edu.ucr.cs.riple.taint:ucrtainting-checker:0.1'
 }
 

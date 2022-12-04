@@ -18,7 +18,7 @@ checkerFramework {
     ]
     extraJavacArgs = [
             '-Awarns',
-            '-AstubDebug'
+//            '-AstubDebug'
     ]
 }
 
@@ -45,6 +45,6 @@ dependencies {
     testImplementation mn.micronaut.serde.jackson
     testImplementation mn.micronaut.jackson.databind
 
-    annotationProcessor 'edu.ucr.cs.riple.taint:ucrtainting-checker:0.1'
+    checkerFramework 'edu.ucr.cs.riple.taint:ucrtainting-checker:0.1'
     implementation 'edu.ucr.cs.riple.taint:ucrtainting-checker:0.1'
 }
