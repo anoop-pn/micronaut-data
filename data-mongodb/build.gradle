@@ -62,6 +62,6 @@ dependencies {
 
     testCompileOnly mn.micronaut.inject.groovy
 
-    annotationProcessor 'edu.ucr.cs.riple.taint:ucrtainting-checker:0.1'
+    checkerFramework 'edu.ucr.cs.riple.taint:ucrtainting-checker:0.1'
     implementation 'edu.ucr.cs.riple.taint:ucrtainting-checker:0.1'
 }
