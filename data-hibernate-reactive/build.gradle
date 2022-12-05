@@ -1,5 +1,17 @@
 plugins {
     id "io.micronaut.build.internal.data-module"
+    id 'org.checkerframework' version '0.6.19'
+}
+
+apply plugin: 'org.checkerframework'
+
+checkerFramework {
+    checkers = [
+            'org.checkerframework.checker.tainting.TaintingChecker',
+    ]
+    // extraJavacArgs = [
+    //         '-Astubs=' + projectDir + '/stubs'
+    // ]
 }
 
 micronautBuild {
@@ -33,4 +45,8 @@ dependencies {
     testImplementation libs.testcontainers.postgresql
 
     testRuntimeOnly libs.drivers.vertx.pg
+
+    compileOnly 'org.checkerframework:checker-qual:3.28.0'
+    testCompileOnly 'org.checkerframework:checker-qual:3.28.0'
+    checkerFramework 'org.checkerframework:checker:3.28.0'
 }
