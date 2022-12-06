@@ -1,7 +1,7 @@
 plugins {
     id "io.micronaut.build.internal.data-module"
     id 'io.micronaut.test-resources'
-    id 'org.checkerframework' version '0.6.19'
+    id 'org.checkerframework' version '0.6.20'
 }
 
 apply plugin: 'org.checkerframework'
