@@ -9,9 +9,10 @@ checkerFramework {
     checkers = [
             'org.checkerframework.checker.tainting.TaintingChecker',
     ]
-    // extraJavacArgs = [
-    //         '-Astubs=' + projectDir + '/stubs'
-    // ]
+    extraJavacArgs = [
+            '-Awarns',
+            // '-Astubs=' + projectDir + '/stubs'
+    ]
 }
 
 dependencies {
