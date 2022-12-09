@@ -73,6 +73,7 @@ import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 /**
  * Abstract SQL repository implementation not specifically bound to JDBC.
@@ -497,7 +498,7 @@ public abstract class AbstractSqlRepositoryOperations<RS, PS, Exc extends Except
      */
     @FunctionalInterface
     protected interface StatementSupplier<PS> {
-        PS create(String ps) throws Exception;
+        PS create(@RUntainted String ps) throws Exception;
     }
 
 }

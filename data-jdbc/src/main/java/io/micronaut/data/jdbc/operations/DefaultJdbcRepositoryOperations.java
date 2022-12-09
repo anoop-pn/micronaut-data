@@ -118,6 +118,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 /**
  * Implementation of {@link JdbcRepositoryOperations}.
@@ -749,7 +750,7 @@ public final class DefaultJdbcRepositoryOperations extends AbstractSqlRepository
 
     @NonNull
     @Override
-    public <R> R prepareStatement(@NonNull String sql, @NonNull PreparedStatementCallback<R> callback) {
+    public <R> R prepareStatement(@NonNull @RUntainted String sql, @NonNull PreparedStatementCallback<R> callback) {
         ArgumentUtils.requireNonNull("sql", sql);
         ArgumentUtils.requireNonNull("callback", callback);
         if (QUERY_LOG.isDebugEnabled()) {

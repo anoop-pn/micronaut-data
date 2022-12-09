@@ -23,6 +23,7 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.stream.Stream;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 /**
  * Simple JDBC operations interface.
@@ -67,7 +68,7 @@ public interface JdbcOperations {
      * @return The result
      */
     @NonNull
-    <R> R prepareStatement(@NonNull String sql, @NonNull PreparedStatementCallback<R> callback);
+    <R> R prepareStatement(@NonNull @RUntainted String sql, @NonNull PreparedStatementCallback<R> callback);
 
     /**
      * Map a result set to a stream of the given type.
