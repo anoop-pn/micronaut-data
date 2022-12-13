@@ -2,6 +2,25 @@ plugins {
 	id "io.micronaut.build.internal.data-module"
     id "io.micronaut.build.internal.data-kotlin"
     id "org.jetbrains.kotlin.kapt"
+	id 'org.checkerframework' version '0.6.20'
+}
+
+apply plugin: 'org.checkerframework'
+
+repositories {
+    // Use Maven Central for resolving dependencies.
+    mavenCentral()
+    mavenLocal()
+}
+
+checkerFramework {
+    checkers = [
+            'edu.ucr.cs.riple.taint.ucrtainting.UCRTaintingChecker',
+    ]
+    extraJavacArgs = [
+            '-Awarns',
+            '-AstubDebug'
+    ]
 }
 
 dependencies {
@@ -28,6 +47,9 @@ dependencies {
 	testImplementation mn.micronaut.http
 	testImplementation mn.micronaut.test.junit5
 	testImplementation projects.dataTck
+
+	checkerFramework 'edu.ucr.cs.riple.taint:ucrtainting-checker:0.1'
+    implementation 'edu.ucr.cs.riple.taint:ucrtainting-checker:0.1'
 }
 
 dependencies {

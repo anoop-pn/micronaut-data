@@ -80,6 +80,8 @@ import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RPolyTainted;
+
 import static io.micronaut.data.intercept.annotation.DataMethod.META_MEMBER_PAGE_SIZE;
 
 /**
@@ -313,7 +315,7 @@ public abstract class AbstractQueryInterceptor<T, R> implements DataInterceptor<
      * @throws IllegalStateException If the root entity is unavailable
      */
     @NonNull
-    protected <E> Class<E> getRequiredRootEntity(MethodInvocationContext context) {
+    protected @RPolyTainted <E> Class<E> getRequiredRootEntity(@RPolyTainted MethodInvocationContext context) {
         Class aClass = context.classValue(DataMethod.NAME, DataMethod.META_MEMBER_ROOT_ENTITY).orElse(null);
         if (aClass != null) {
             return aClass;
