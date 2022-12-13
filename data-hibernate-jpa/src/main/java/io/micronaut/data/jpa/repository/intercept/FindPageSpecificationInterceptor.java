@@ -34,6 +34,8 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
+
 /**
  * Runtime implementation of {@code Page find(Specification, Pageable)}.
  *
@@ -68,7 +70,7 @@ public class FindPageSpecificationInterceptor extends AbstractSpecificationInter
     }
 
     @Override
-    public Page intercept(RepositoryMethodKey methodKey, MethodInvocationContext<Object, Object> context) {
+    public Page intercept(RepositoryMethodKey methodKey, @RUntainted MethodInvocationContext<Object, Object> context) {
         if (context.getParameterValues().length != 2) {
             throw new IllegalStateException("Expected exactly 2 arguments to method");
         }

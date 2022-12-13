@@ -30,6 +30,8 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
+
 /**
  * Implementation of the unpaged version of {@code findAll(Specification)}.
  *
@@ -56,7 +58,7 @@ public class FindAllSpecificationInterceptor extends AbstractSpecificationInterc
     }
 
     @Override
-    public Object intercept(RepositoryMethodKey methodKey, MethodInvocationContext<Object, Object> context) {
+    public Object intercept(RepositoryMethodKey methodKey, @RUntainted MethodInvocationContext<Object, Object> context) {
         final Specification specification = getSpecification(context);
         final EntityManager entityManager = jpaOperations.getCurrentEntityManager();
         final CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();

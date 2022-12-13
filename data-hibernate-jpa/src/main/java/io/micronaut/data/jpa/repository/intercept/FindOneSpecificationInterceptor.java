@@ -34,6 +34,8 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.util.Optional;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
+
 /**
  * Implementation of {@code findOne(Specification)} for JPA specifications.
  *
@@ -60,7 +62,7 @@ public class FindOneSpecificationInterceptor extends AbstractSpecificationInterc
     }
 
     @Override
-    public Object intercept(RepositoryMethodKey methodKey, MethodInvocationContext<Object, Object> context) {
+    public Object intercept(RepositoryMethodKey methodKey, @RUntainted MethodInvocationContext<Object, Object> context) {
         Specification specification = getSpecification(context);
         final EntityManager entityManager = jpaOperations.getCurrentEntityManager();
         final CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
