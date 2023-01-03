@@ -17,6 +17,7 @@ package io.micronaut.data.intercept;
 
 import io.micronaut.aop.MethodInvocationContext;
 import io.micronaut.core.annotation.Introspected;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 /**
  * Marker interface for all Data related interceptors.
@@ -37,5 +38,5 @@ public interface DataInterceptor<T, R> {
      * @param context The context
      * @return The result
      */
-    R intercept(RepositoryMethodKey methodKey, MethodInvocationContext<T, R> context);
+    R intercept(RepositoryMethodKey methodKey, @RUntainted MethodInvocationContext<T, R> context);
 }
