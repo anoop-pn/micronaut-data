@@ -34,6 +34,8 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionException;
 import java.util.concurrent.CompletionStage;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
+
 /**
  * The root Data introduction advice, which simply delegates to an appropriate interceptor
  * declared in the {@link io.micronaut.data.intercept} package.
@@ -67,7 +69,7 @@ public final class DataIntroductionAdvice implements MethodInterceptor<Object, O
     }
 
     @Override
-    public Object intercept(MethodInvocationContext<Object, Object> context) {
+    public Object intercept(@RUntainted MethodInvocationContext<Object, Object> context) {
         RepositoryMethodKey key = new RepositoryMethodKey(context.getTarget(), context.getExecutableMethod());
         DataInterceptor<Object, Object> dataInterceptor = dataInterceptorResolver.resolve(key, context, injectionPoint);
         InterceptedMethod interceptedMethod = InterceptedMethod.of(context);
@@ -88,7 +90,7 @@ public final class DataIntroductionAdvice implements MethodInterceptor<Object, O
     }
 
     private Object interceptCompletionStage(InterceptedMethod interceptedMethod,
-                                            MethodInvocationContext<Object, Object> context,
+    @RUntainted MethodInvocationContext<Object, Object> context,
                                             DataInterceptor<Object, Object> dataInterceptor,
                                             RepositoryMethodKey key) {
         TransactionSynchronizationManager.TransactionSynchronizationState state = null;
