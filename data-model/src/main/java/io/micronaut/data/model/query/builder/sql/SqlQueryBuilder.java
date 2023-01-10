@@ -76,6 +76,7 @@ import static io.micronaut.data.annotation.GeneratedValue.Type.IDENTITY;
 import static io.micronaut.data.annotation.GeneratedValue.Type.SEQUENCE;
 import static io.micronaut.data.annotation.GeneratedValue.Type.UUID;
 import static io.micronaut.data.model.query.builder.sql.SqlQueryBuilderUtils.addTypeToColumn;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RPolyTainted;
 
 /**
  * Implementation of {@link QueryBuilder} that builds SQL queries.
@@ -209,7 +210,7 @@ public class SqlQueryBuilder extends AbstractSqlLikeQueryBuilder implements Quer
      */
     @Experimental
     public @NonNull
-    String buildBatchCreateTableStatement(@NonNull PersistentEntity... entities) {
+    @RPolyTainted String buildBatchCreateTableStatement(@NonNull @RPolyTainted PersistentEntity... entities) {
         return Arrays.stream(entities).flatMap(entity -> Stream.of(buildCreateTableStatements(entity)))
                 .collect(Collectors.joining(System.getProperty("line.separator")));
     }
@@ -223,7 +224,7 @@ public class SqlQueryBuilder extends AbstractSqlLikeQueryBuilder implements Quer
      */
     @Experimental
     public @NonNull
-    String buildBatchDropTableStatement(@NonNull PersistentEntity... entities) {
+    @RPolyTainted String buildBatchDropTableStatement(@NonNull @RPolyTainted PersistentEntity... entities) {
         return Arrays.stream(entities).flatMap(entity -> Stream.of(buildDropTableStatements(entity)))
                 .collect(Collectors.joining("\n"));
     }

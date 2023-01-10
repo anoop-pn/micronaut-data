@@ -29,6 +29,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 /**
  * A stored computed query. This interface represents the
@@ -69,7 +70,7 @@ public interface StoredQuery<E, R> extends Named, StoredDataOperation<R> {
      * @return The query to execute
      */
     @NonNull
-    String getQuery();
+    @RUntainted String getQuery();
 
     /**
      * The query to execute.
