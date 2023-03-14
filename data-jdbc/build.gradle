@@ -1,6 +1,6 @@
 plugins {
     id "io.micronaut.build.internal.data-module"
-    id 'org.checkerframework' version '0.6.20'
+    id 'org.checkerframework' version '0.6.25'
 }
 
 apply plugin: 'org.checkerframework'
@@ -17,7 +17,9 @@ checkerFramework {
     ]
     extraJavacArgs = [
             '-Awarns',
-            '-AstubDebug'
+            '-AstubDebug',
+            '-AannotatedPackages=com.test',
+            '-AenableCustomCheck=true'
     ]
 }
 
